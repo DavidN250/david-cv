@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* ─── Typography ──────────────────────────────────────────────────── */
+  --font-sans:    "Inter",          system-ui, sans-serif;
+  --font-display: "Space Grotesk",  "Inter",   sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  /* ─── Dark mode tokens (default) ─────────────────────────────────── */
+  /*  Inspired by Linear + GitHub Dark — premium developer aesthetic    */
+  --color-app-black:  #0f0f10;   /* deepest bg — warm near-black        */
+  --color-primary:    #1c1c1e;   /* main panel bg                       */
+  --color-secondary:  #242426;   /* sidebars, profile card              */
+  --color-surface:    #2c2c2e;   /* inputs, elevated cards              */
+  --color-border:     #3a3a3c;   /* dividers & borders                  */
+
+  --color-accent:     #f6b846;   /* #002F72 brand blue — lightened for dark bg visibility */
+
+  --color-app-white:  #f2f2f7;   /* primary text — Apple dark fg        */
+  --color-muted:      #8e8e93;   /* secondary text                      */
+  --color-subtle:     #48484a;   /* placeholder / dim text              */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Light mode overrides ────────────────────────────────────────── */
+/*  Apple HIG-inspired — clean, high-contrast, refined                */
+.light {
+  color-scheme: light;
+
+  --color-app-black:  #f5f5f7;   /* body bg — Apple light canvas        */
+  --color-primary:    #ffffff;   /* main content panel                  */
+  --color-secondary:  #f5f5f7;   /* sidebars, profile card              */
+  --color-surface:    #e8e8ed;   /* inputs, elevated cards              */
+  --color-border:     #d1d1d6;   /* borders                             */
+
+  --color-accent:     #f6b846;   /* primary brand blue — full depth on light bg */
+
+  --color-app-white:  #1d1d1f;   /* primary text — Apple light fg       */
+  --color-muted:      #6e6e73;   /* secondary text                      */
+  --color-subtle:     #aeaeb2;   /* placeholder / dim text              */
+}
+
+/* Idle cursor fact bubble */
+@keyframes idle-fact {
+  from { opacity: 0; transform: translateY(6px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* Floating background code symbols */
+/* --float-opacity is resolved per-element so .light can override it   */
+:root  { --float-opacity: 0.09; --grid-percent: 15%; }
+.light { --float-opacity: 0.22; --grid-percent: 28%; }
+
+@keyframes code-float {
+  0%   { transform: translate(0px,  0)      rotate(0deg);  opacity: 0;                       }
+  6%   {                                                    opacity: var(--float-opacity);     }
+  50%  { transform: translate(18px, -52vh)  rotate(8deg);  opacity: var(--float-opacity);     }
+  94%  {                                                    opacity: var(--float-opacity);     }
+  100% { transform: translate(-10px,-108vh) rotate(-4deg); opacity: 0;                       }
+}
+
+/* ─── Panel scrollbar ─────────────────────────────────────────────── */
+#main-panel::-webkit-scrollbar       { width: 4px; }
+#main-panel::-webkit-scrollbar-track { background: transparent; }
+#main-panel::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  border-radius: 2px;
+}
+#main-panel::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ─── Reusable form input ─────────────────────────────────────────── */
+@layer components {
+  .input-field {
+    @apply bg-surface border border-border text-app-white placeholder-subtle
+           rounded-lg px-4 py-3 text-sm w-full
+           focus:outline-none focus:border-accent transition-colors;
+  }
+}
