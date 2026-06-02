@@ -2,6 +2,7 @@ import { Code2, ArrowDown } from "lucide-react";
 import { personal } from "../../data/resume";
 import { useTypewriter } from "../../hooks/useTypewriter";
 import Button from "../ui/Button";
+import { asset } from "../../lib/utils";
 
 export default function Hero() {
   const title = useTypewriter(personal.titles);
@@ -27,7 +28,7 @@ export default function Hero() {
         </div>
         <p className="text-muted text-sm leading-relaxed mb-8">{personal.tagline}</p>
         <div className="flex flex-col gap-3">
-          <Button href={personal.cvUrl} variant="primary">Download CV</Button>
+          <Button href={asset(personal.cvUrl)} variant="primary">Download CV</Button>
           <Button href="#about" variant="outline">View My Work</Button>
         </div>
       </div>

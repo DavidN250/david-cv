@@ -4,6 +4,7 @@ import {
   MapPin, Mail, Briefcase, Code2, Link2, Share2, MessageCircle, Download,
 } from "lucide-react";
 import { personal } from "../../data/resume";
+import { asset } from "../../lib/utils";
 
 const NAV = [
   { id: "about",   label: "About",   Icon: User },
@@ -121,7 +122,7 @@ export default function Drawer({ open, onClose }: Props) {
         {/* Footer CTA */}
         <div className="border-t border-border p-4 shrink-0">
           <a
-            href={personal.cvUrl}
+            href={asset(personal.cvUrl)}
             download
             className="flex items-center justify-center gap-2 py-2.5 bg-accent text-app-white font-bold text-xs rounded-xl hover:bg-accent-hover transition-colors uppercase tracking-wider"
           >

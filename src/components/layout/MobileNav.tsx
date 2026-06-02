@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { personal } from "../../data/resume";
 import { useScrollSpy } from "../../hooks/useScrollSpy";
+import { asset } from "../../lib/utils";
 
 const navLinks = [
   { id: "hero",    label: "Home" },
@@ -52,7 +53,7 @@ export default function MobileNav() {
           </ul>
           <div className="mt-4 pt-4 border-t border-border">
             <a
-              href={personal.cvUrl}
+              href={asset(personal.cvUrl)}
               download
               className="block text-center py-2.5 bg-accent text-app-white font-bold text-sm rounded-xl"
             >

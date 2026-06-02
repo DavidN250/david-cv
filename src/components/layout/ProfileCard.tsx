@@ -2,6 +2,7 @@ import React from "react";
 import { MapPin, Mail, Briefcase, Code2, Link2, Share2, MessageCircle, Download, UserCheck, Phone } from "lucide-react";
 import { personal } from "../../data/resume";
 import { useTypewriter } from "../../hooks/useTypewriter";
+import { asset } from "../../lib/utils";
 
 const SOCIAL = {
   github:   { Icon: Code2 },
@@ -59,7 +60,7 @@ export default function ProfileCard() {
 
           {/* Cover photo — renders on top when loaded */}
           <img
-            src={personal.coverPhoto}
+            src={asset(personal.coverPhoto)}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
             onError={(e) => { e.currentTarget.style.display = "none"; }}
@@ -83,7 +84,7 @@ export default function ProfileCard() {
         <div className="flex justify-center shrink-0" style={{ marginTop: -68 }}>
           <div className="relative w-28 h-28 rounded-full border-4 border-secondary overflow-hidden bg-surface shadow-2xl">
             <img
-              src={personal.photo}
+              src={asset(personal.photo)}
               alt={personal.name}
               className="w-full h-full object-cover object-top"
               onError={(e) => {
@@ -153,7 +154,7 @@ export default function ProfileCard() {
         {/* ── Bottom CTA ── */}
         <div className="border-t border-border grid grid-cols-2 divide-x divide-border shrink-0">
           <a
-            href={personal.cvUrl}
+            href={asset(personal.cvUrl)}
             download
             className="flex items-center justify-center gap-2 py-4 text-muted hover:text-accent hover:bg-surface transition-colors"
           >
