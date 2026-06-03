@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main portfolio page -->
+  <url>
+    <loc>https://davidn250.github.io/david-cv/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/blog/building-scalable-apis-nodejs-postgresql</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/blog/react-19-whats-new</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/blog/tailwind-css-v4-css-first</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/blog/monolith-to-microservices-lessons</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projects -->
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/e-commerce-platform</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/real-time-chat-app</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/analytics-dashboard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/task-management-api</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/portfolio-cms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://davidn250.github.io/david-cv/#/work/weather-pwa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

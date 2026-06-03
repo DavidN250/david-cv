@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://davidn250.github.io/david-cv/sitemap.xml
