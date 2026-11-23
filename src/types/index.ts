@@ -20,7 +20,7 @@ export interface Skill {
 export interface Project {
   slug: string;
   title: string;
-  category: "fullstack" | "frontend" | "backend";
+  category: "frontend" | "mobile" | "fullstack";
   description: string;
   fullDescription: string;
   tech: string[];

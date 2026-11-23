@@ -7,7 +7,7 @@ import SectionHeader from "../ui/SectionHeader";
 import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 
-const filters = ["all", "fullstack", "frontend", "backend"] as const;
+const filters = ["all", "frontend", "mobile", "fullstack"] as const;
 type Filter = (typeof filters)[number];
 
 export default function Works() {
