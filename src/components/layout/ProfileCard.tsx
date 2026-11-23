@@ -3,6 +3,7 @@ import { MapPin, Mail, Briefcase, Code2, Link2, Share2, MessageCircle, Download,
 import { personal } from "../../data/resume";
 import { useTypewriter } from "../../hooks/useTypewriter";
 import { asset } from "../../lib/utils";
+import { useHireMe } from "../ui/HireMeModal";
 
 const SOCIAL = {
   github:   { Icon: Code2 },
@@ -13,6 +14,7 @@ const SOCIAL = {
 
 export default function ProfileCard() {
   const title = useTypewriter(personal.titles);
+  const { openHireMe } = useHireMe();
 
   return (
     <div className="hidden md:block relative flex-2 min-w-0 h-full">
@@ -155,19 +157,20 @@ export default function ProfileCard() {
         <div className="border-t border-border grid grid-cols-2 divide-x divide-border shrink-0">
           <a
             href={asset(personal.cvUrl)}
-            download
+            download={personal.cvFileName}
             className="flex items-center justify-center gap-2 py-4 text-muted hover:text-accent hover:bg-surface transition-colors"
           >
             <Download size={14} />
             <span className="text-[10px] font-bold tracking-widest uppercase">Download CV</span>
           </a>
-          <a
-            href="#contact"
-            className="flex items-center justify-center gap-2 py-4 text-muted hover:text-accent hover:bg-surface transition-colors"
+          <button
+            type="button"
+            onClick={() => openHireMe()}
+            className="flex items-center justify-center gap-2 py-4 text-muted hover:text-accent hover:bg-surface transition-colors cursor-pointer"
           >
             <UserCheck size={14} />
             <span className="text-[10px] font-bold tracking-widest uppercase">Hire Me</span>
-          </a>
+          </button>
         </div>
       </aside>
     </div>

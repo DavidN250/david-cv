@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { personal } from "../../data/resume";
 import { useScrollSpy } from "../../hooks/useScrollSpy";
+import { useSectionNav } from "../../hooks/useSectionNav";
 import { asset } from "../../lib/utils";
 
 const navLinks = [
@@ -14,15 +15,24 @@ const navLinks = [
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
-  const activeId = useScrollSpy(navLinks.map((l) => l.id));
+  const activeId  = useScrollSpy(navLinks.map((l) => l.id));
+  const goSection = useSectionNav();
+
+  const handleNav = (id: string) => {
+    setOpen(false);
+    goSection(id);
+  };
 
   return (
     <header className="md:hidden fixed top-0.5 left-0 right-0 z-50 bg-primary backdrop-blur-sm border-b border-border">
       <div className="flex items-center justify-between px-5 h-14">
-        <a href="#hero" className="text-app-white font-extrabold text-lg">
+        <button
+          onClick={() => handleNav("hero")}
+          className="text-app-white font-extrabold text-lg"
+        >
           {personal.name.split(" ")[0]}
           <span className="text-accent">.</span>
-        </a>
+        </button>
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
@@ -39,22 +49,21 @@ export default function MobileNav() {
           <ul className="space-y-1">
             {navLinks.map(({ id, label }) => (
               <li key={id}>
-                <a
-                  href={`#${id}`}
-                  onClick={() => setOpen(false)}
-                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                <button
+                  onClick={() => handleNav(id)}
+                  className={`w-full text-left block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                     activeId === id ? "text-accent bg-accent-soft" : "text-muted hover:text-app-white"
                   }`}
                 >
                   {label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
           <div className="mt-4 pt-4 border-t border-border">
             <a
               href={asset(personal.cvUrl)}
-              download
+              download={personal.cvFileName}
               className="block text-center py-2.5 bg-accent text-app-white font-bold text-sm rounded-xl"
             >
               Download CV

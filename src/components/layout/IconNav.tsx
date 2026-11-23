@@ -1,5 +1,6 @@
 import { User, FileText, Eye, BookOpen, Send, Menu, Sun, Moon } from "lucide-react";
 import { useScrollSpy } from "../../hooks/useScrollSpy";
+import { useSectionNav } from "../../hooks/useSectionNav";
 
 const NAV = [
   { id: "about",   label: "About",   Icon: User },
@@ -16,7 +17,8 @@ interface Props {
 }
 
 export default function IconNav({ onOpenDrawer, onToggleDark, dark }: Props) {
-  const activeId = useScrollSpy(NAV.map((n) => n.id));
+  const activeId  = useScrollSpy(NAV.map((n) => n.id));
+  const goSection = useSectionNav();
 
   return (
     <aside className="hidden md:flex flex-col items-center w-18 shrink-0 h-full rounded-2xl bg-secondary">
@@ -55,9 +57,9 @@ export default function IconNav({ onOpenDrawer, onToggleDark, dark }: Props) {
         {NAV.map(({ id, label, Icon }) => {
           const active = activeId === id;
           return (
-            <a
+            <button
               key={id}
-              href={`#${id}`}
+              onClick={() => goSection(id)}
               title={label}
               className={`relative flex flex-col items-center gap-1.5 py-3 w-full rounded-xl transition-colors duration-200 ${
                 active
@@ -69,7 +71,7 @@ export default function IconNav({ onOpenDrawer, onToggleDark, dark }: Props) {
               <span className="text-[9px] font-black tracking-widest uppercase leading-none">
                 {label}
               </span>
-            </a>
+            </button>
           );
         })}
       </nav>

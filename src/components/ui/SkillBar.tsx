@@ -21,9 +21,8 @@ export default function SkillBar({ name, level }: Skill) {
 
   return (
     <div ref={ref} className="mb-5">
-      <div className="flex justify-between text-sm mb-2">
-        <span className="text-muted font-medium">{name}</span>
-        <span className="font-mono text-accent font-medium">{level}%</span>
+      <div className="mb-2">
+        <span className="text-muted text-sm font-medium">{name}</span>
       </div>
       <div className="h-2 bg-surface rounded-full overflow-hidden">
         <div

@@ -18,19 +18,25 @@ export interface Skill {
 }
 
 export interface Project {
+  slug: string;
   title: string;
   category: "fullstack" | "frontend" | "backend";
   description: string;
+  fullDescription: string;
   tech: string[];
   link: string;
+  repoUrl?: string;
 }
 
 export interface BlogPost {
+  slug: string;
   title: string;
   category: string;
   date: string;
   excerpt: string;
   readTime: string;
+  content: string;   /* HTML string */
+  tags: string[];
 }
 
 export interface Testimonial {
@@ -52,4 +58,11 @@ export interface ServiceItem {
   icon: string;
   title: string;
   description: string;
+}
+
+export interface Comment {
+  id: string;
+  name: string;
+  message: string;
+  date: string;
 }

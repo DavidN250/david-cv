@@ -4,9 +4,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "outline" | "ghost";
   asChild?: boolean;
   href?: string;
+  download?: boolean | string;
 }
 
-export default function Button({ variant = "primary", className, children, href, ...props }: ButtonProps) {
+export default function Button({ variant = "primary", className, children, href, download, ...props }: ButtonProps) {
   const base = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
   const variants = {
     primary: "bg-accent text-white hover:bg-accent-hover",
@@ -16,7 +17,7 @@ export default function Button({ variant = "primary", className, children, href,
 
   if (href) {
     return (
-      <a href={href} className={cn(base, variants[variant], className)}>
+      <a href={href} download={download} className={cn(base, variants[variant], className)}>
         {children}
       </a>
     );

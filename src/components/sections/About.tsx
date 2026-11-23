@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Monitor, Server, Database, Rocket, Check, Star } from "lucide-react";
+import {
+  Monitor, Server, Database, Rocket, Check, Star,
+  MapPin, Mail, Phone, Code2, Globe, Briefcase, Zap,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { about, services, pricing } from "../../data/resume";
 import SectionHeader from "../ui/SectionHeader";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
+import { useHireMe } from "../ui/HireMeModal";
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   monitor:  Monitor,
@@ -14,9 +18,20 @@ const SERVICE_ICONS: Record<string, LucideIcon> = {
   rocket:   Rocket,
 };
 
+const DETAIL_ICONS: Record<string, LucideIcon> = {
+  location:   MapPin,
+  email:      Mail,
+  phone:      Phone,
+  github:     Code2,
+  languages:  Globe,
+  experience: Briefcase,
+  status:     Zap,
+};
+
 export default function About() {
   const defaultSelected = pricing.findIndex((t) => t.highlighted);
   const [selected, setSelected] = useState(defaultSelected);
+  const { openHireMe } = useHireMe();
 
   return (
     <>
@@ -24,15 +39,30 @@ export default function About() {
       <section id="about" className="py-20 px-8">
         <SectionHeader label="Get to know me" title="About Me" />
         <div className="mt-14 max-w-3xl mx-auto">
-          <p className="text-muted text-base leading-relaxed mb-7">{about.bio}</p>
-          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7">
-            {about.details.map(({ label, value }) => (
-              <div key={label} className="bg-surface rounded-lg px-4 py-3 border border-border">
-                <dt className="text-xs text-subtle uppercase tracking-wider mb-1">{label}</dt>
-                <dd className="text-app-white font-medium text-sm truncate">{value}</dd>
-              </div>
-            ))}
-          </dl>
+          <p className="text-muted text-base leading-relaxed mb-8">{about.bio}</p>
+
+          {/* Business card */}
+          <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-secondary mb-8">
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+              {about.details
+                .filter(({ label }) => label.toLowerCase() !== "name")
+                .map(({ label, value }) => {
+                  const Icon = DETAIL_ICONS[label.toLowerCase()] ?? Zap;
+                  return (
+                    <div key={label} className="flex items-start gap-3 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 mt-0.5">
+                        <Icon size={13} className="text-accent" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-mono text-[10px] text-subtle uppercase tracking-wider">{label}</p>
+                        <p className="text-app-white text-sm font-medium mt-0.5 truncate">{value}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+
           <Button href="#contact" variant="primary">Let&apos;s Talk</Button>
         </div>
       </section>
@@ -108,7 +138,8 @@ export default function About() {
                 </ul>
 
                 <Button
-                  href="#contact"
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); openHireMe(tier.name); }}
                   variant={isSelected ? "primary" : "outline"}
                   className="w-full mt-auto"
                 >

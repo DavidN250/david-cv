@@ -16,9 +16,9 @@
 
   --color-accent:     #f6b846;   /* #002F72 brand blue — lightened for dark bg visibility */
 
-  --color-app-white:  #f2f2f7;   /* primary text — Apple dark fg        */
-  --color-muted:      #8e8e93;   /* secondary text                      */
-  --color-subtle:     #48484a;   /* placeholder / dim text              */
+  --color-app-white:  #f2f2f7;   /* primary text                        */
+  --color-muted:      #c0c0c8;   /* secondary text — lifted for legibility */
+  --color-subtle:     #80808a;   /* placeholder / dim text              */
 }
 
 html { scroll-behavior: smooth; }
@@ -74,6 +74,18 @@ body {
   border-radius: 2px;
 }
 #main-panel::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* Rich content / blog prose */
+.prose h2 { @apply font-display text-app-white text-xl font-bold mt-8 mb-3; }
+.prose h3 { @apply font-display text-app-white text-lg font-semibold mt-6 mb-2; }
+.prose p  { @apply text-muted leading-relaxed mb-4; }
+.prose ul { @apply list-disc list-inside space-y-1.5 mb-4 pl-2; }
+.prose ol { @apply list-decimal list-inside space-y-1.5 mb-4 pl-2; }
+.prose li { @apply text-muted; }
+.prose pre { @apply bg-surface border border-border rounded-xl p-4 mb-4 overflow-x-auto; }
+.prose code { @apply font-mono text-accent text-sm; }
+.prose pre code { @apply text-app-white text-xs leading-relaxed; }
+.prose a  { @apply text-accent underline hover:no-underline; }
 
 /* ─── Reusable form input ─────────────────────────────────────────── */
 @layer components {

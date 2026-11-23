@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Monitor } from "lucide-react";
 import { portfolio } from "../../data/resume";
 import type { Project } from "../../types";
@@ -55,9 +56,9 @@ export default function Works() {
                     </span>
                   ))}
                 </div>
-                <a href={project.link} className="mt-auto text-sm text-accent font-medium hover:underline">
+                <Link to={`/work/${project.slug}`} className="mt-auto text-sm text-accent font-medium hover:underline">
                   View Project →
-                </a>
+                </Link>
               </div>
             </Card>
           ))}

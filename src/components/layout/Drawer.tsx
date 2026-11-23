@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { personal } from "../../data/resume";
 import { asset } from "../../lib/utils";
+import { useSectionNav } from "../../hooks/useSectionNav";
 
 const NAV = [
   { id: "about",   label: "About",   Icon: User },
@@ -27,6 +28,10 @@ interface Props {
 }
 
 export default function Drawer({ open, onClose }: Props) {
+  const goSection = useSectionNav();
+
+  const handleNav = (id: string) => { onClose(); goSection(id); };
+
   return (
     <>
       {/* Backdrop */}
@@ -106,14 +111,13 @@ export default function Drawer({ open, onClose }: Props) {
           <ul className="space-y-0.5">
             {NAV.map(({ id, label, Icon }) => (
               <li key={id}>
-                <a
-                  href={`#${id}`}
-                  onClick={onClose}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:text-app-white hover:bg-surface transition-colors text-sm font-medium"
+                <button
+                  onClick={() => handleNav(id)}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:text-app-white hover:bg-surface transition-colors text-sm font-medium"
                 >
                   <Icon size={16} strokeWidth={1.5} />
                   {label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
@@ -123,7 +127,7 @@ export default function Drawer({ open, onClose }: Props) {
         <div className="border-t border-border p-4 shrink-0">
           <a
             href={asset(personal.cvUrl)}
-            download
+            download={personal.cvFileName}
             className="flex items-center justify-center gap-2 py-2.5 bg-accent text-app-white font-bold text-xs rounded-xl hover:bg-accent-hover transition-colors uppercase tracking-wider"
           >
             <Download size={14} />
